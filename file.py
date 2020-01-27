@@ -1,3 +1,5 @@
+import os
+
 def read(path):
     aux = []
     with open(path, 'r') as file:
@@ -6,7 +8,9 @@ def read(path):
     return aux
 
 def write(data, filename):
-    with open(filename, 'w+') as file:
+    if not os.path.exists('Resultados'):
+        os.makedirs('Resultados')
+    with open('Resultados/' + filename, 'w+') as file:
         for lines in data:
             file.write(lines + '\n')
         file.close()
