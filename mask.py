@@ -18,10 +18,9 @@ class Mask(object):
         self.b = int((self.height - 1) / 2)
         data = mask_file[1:]
         filtered_data = list(map(toInt, data))
-        matrix = Matrix(self.width, self.height, filtered_data)
-        self.mask = matrix.getMatrixData()
+        self.matrix = Matrix(self.width, self.height, filtered_data)
+        self.mask = self.matrix.getMatrixData()
         self.weight = self.width * self.height
-        print("Mask: {}, Weight: {}".format(self.mask, self.weight))
 
     def getAB(self):
         return (self.a, self.b)
@@ -34,3 +33,7 @@ class Mask(object):
 
     def getWeight(self):
         return self.weight
+
+    def show(self, effectName):
+        print("-- Mask {} --\nwidth: {}, height: {}".format(effectName, self.width, self.height))
+        self.matrix.show()

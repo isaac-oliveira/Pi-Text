@@ -4,9 +4,9 @@ from manipulator import Manipulator
 
 path = input('Digite o caminho do arquivo: ')
 pbm = Pbm(path)
-path = input('Digite o caminho da mascara: ')
-mask = Mask(path)
+mask = Mask('Mascaras/mask-dilation.txt')
 manipulator = Manipulator(pbm)
-manipulator.applyErosion(mask)
+manipulator.applyMedian()
+manipulator.applyDilation(mask)
 name = input('Digite o nome do arquivo: ')
 pbm.save(name)

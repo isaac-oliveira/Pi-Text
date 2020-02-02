@@ -13,7 +13,6 @@ class Pbm(object):
         self.width, self.height = [ int(x) for x in dimen]
         pixels = self.pbm[3:]
         filtered_pixels = Util.filterData(pixels)
-        print(len(filtered_pixels))
         self.matrix = Matrix(self.width, self.height, filtered_pixels)
 
     def matrixToPbm(self, matrix):

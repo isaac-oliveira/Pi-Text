@@ -1,3 +1,5 @@
+from mask import Mask
+
 def media(mask, data):
     value = sum(data)
     weight = mask.getWeight()
@@ -6,8 +8,10 @@ def media(mask, data):
 def median(mask, data):
     data.sort(reverse = False)
     lenght = len(data)
-    index = round(lenght/2)
-    return data[index]
+    index = (round(lenght/2) + 1) - 1
+    if(lenght > index >= 0):
+        return data[index]
+    return data[0]
 
 def delation(_, data):
     value = sum(data)
@@ -52,39 +56,51 @@ class Manipulator(object):
 
     # para aplicar mascaras que so necessitam da soma dos valores (ex: Laplace e Sobel)
     def applyGenericMask(self, mask):
+        mask.show('Generic Mask')
         matrix = self.pbm.getMatrix()
         data = matrix.map(moveMask(mask, matrix, None))
         matrix.setMatrixData(data)
+        print('Applied Generic Mask')
 
     def applyMedia(self, mask):
+        mask.show('Media')
         matrix = self.pbm.getMatrix()
         data = matrix.map(moveMask(mask, matrix, media))
         matrix.setMatrixData(data)
+        print('Applied Media')
+
     
-    def applyMedian(self, mask):
+    def applyMedian(self):
+        mask = Mask('Mascaras/mask-median.txt')
+        mask.show('Median')
         matrix = self.pbm.getMatrix()
         data = matrix.map(moveMask(mask, matrix, median))
         matrix.setMatrixData(data)
+        print('Applied Median')
 
     def applyDilation(self, mask):
+        mask.show('Dilation')
         matrix = self.pbm.getMatrix()
         data = matrix.map(moveMask(mask, matrix, delation))
         matrix.setMatrixData(data)
-        print('dilation')
+        print('Applied Dilation')
 
     def applyErosion(self, mask):
+        mask.show('Erosion')
         matrix = self.pbm.getMatrix()
         data = matrix.map(moveMask(mask, matrix, erosion))
         matrix.setMatrixData(data)
-        print('erosion')
+        print('Applied Erosion')
     
     def applyNegative(self):
         matrix = self.pbm.getMatrix()
         data = matrix.map(negative)
         matrix.setMatrixData(data)
+        print('Applied Negative')
     
     def applyThreshold(self, limiar):
         matrix = self.pbm.getMatrix()
         data = matrix.map(threshold(limiar))
         matrix.setMatrixData(data)
+        print('Applied Threshold')
         
