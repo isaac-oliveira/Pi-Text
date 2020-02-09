@@ -46,6 +46,12 @@ def threshold(limiar):
         return 1 if elem > limiar else 0
     return func
 
+def applyDilation(mask, matrix):
+    mask.show('Dilation')
+    data = matrix.map(moveMask(mask, matrix, delation))
+    matrix.setMatrixData(data)
+    print('Applied Dilation')
+
 class Manipulator(object):
     def __init__(self, pbm):
         super(Manipulator, self).__init__()

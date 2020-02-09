@@ -4,6 +4,5 @@
 <h3>Status: concluída </h3>
 
 <h3>Etapa 2:</h3>
-<p>Contagem das linhas e colunas, e detecção das palavras (circunscrição com retângulo) e possíveis
-recursos extras.</p>
-<h3>Status: Em andamento </h3>
+<p>Contagem das linhas e colunas, e detecção das palavras (circunscrição com retângulo).</p>
+<h3>Status: concluída </h3>
